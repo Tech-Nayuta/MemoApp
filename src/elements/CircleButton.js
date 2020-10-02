@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 // import { AppLoading } from 'expo-font';
 import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
-import Font from 'expo';
+import * as Font from 'expo-font';
 import { createIconSet } from '@expo/vector-icons';
 
 const CustomIcon = createIconSet({
