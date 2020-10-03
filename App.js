@@ -12,15 +12,23 @@ import SignupScreen from './src/screens/SignupScreen';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
  
-// 3.x 系では、
-// import { createAppContainer, createStackNavigator } from 'react-navigation';
-// のようにしていましたが、パッケージが分離されたため、それぞれ個別で読み込む必要があります。
  
 const App = createStackNavigator({
-  Home: { screen: MemoListScreen },
+  Home:       { screen: MemoListScreen },
+  MemoDetail: { screen: MemoDetailScreen },
+  MemoEdit:   { screen: MemoEditScreen },
+  Login:      { screen: LoginScreen },
+  Signup:     { screen: SignupScreen },
+
 }, {
   defaultNavigationOptions: {
-    // ... オプション
+    headerTitle: 'Momot',
+    headerTitleStyle:{
+      color: '#fff',
+    },
+    headerStyle:{
+      backgroundColor: "#265366",
+    },
   }
 });
  
