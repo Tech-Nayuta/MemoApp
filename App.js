@@ -38,7 +38,7 @@ const App = createStackNavigator({
   MemoEdit:   { screen: MemoEditScreen },
 }, {
   defaultNavigationOptions: {
-    headerBackTitle: " ",
+    headerBackTitle: "　",
     headerTitle: 'Momot',
     headerTintColor: '#fff',
     headerTitleStyle:{

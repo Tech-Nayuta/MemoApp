@@ -9,7 +9,15 @@ class LoginScreen extends React.Component{
   }
 
   handleSubmit(){
-    console.log('submitted');
+    // console.log('submitted');
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(({user}) => {
+        console.log('success!', user);
+        this.props.navigation.navigate('Home');
+      })
+      .catch((error) => {
+        console.log('error!',error);
+      }); 
     // this.props.navigation.navigate('Home');
     // Log_in();
   }
@@ -35,7 +43,7 @@ class LoginScreen extends React.Component{
                    secureTextEntry
                    /> 
 
-        <TouchableHighlight style={styles.button} onPress={() => {this.handleSubmit.bind(this);}}>
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)}>
           <Text style={styles.buttonTitle}>ログインする</Text>
         </TouchableHighlight>
       </View>
