@@ -13,7 +13,10 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import firebase from 'firebase';
 
+require("firebase/firestore");
+
 import ENV from './env.json'
+import MemoCreateScreen from './src/screens/MemoCreateScreen';
 
 const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
@@ -32,6 +35,7 @@ if(firebase.apps.length == 0){ //initializeAppが複数回呼ばれるとエラ�
 
 const App = createStackNavigator({
   Login:      { screen: LoginScreen },
+  MemoCreate: { screen: MemoCreateScreen},
   Signup:     { screen: SignupScreen },
   Home:       { screen: MemoListScreen },
   MemoDetail: { screen: MemoDetailScreen },

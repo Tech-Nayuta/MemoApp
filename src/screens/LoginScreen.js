@@ -13,13 +13,11 @@ class LoginScreen extends React.Component{
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(({user}) => {
         console.log('success!', user);
-        this.props.navigation.navigate('Home');
+        this.props.navigation.navigate('Home', { currentUser: user});
       })
       .catch((error) => {
         console.log('error!',error);
       }); 
-    // this.props.navigation.navigate('Home');
-    // Log_in();
   }
 
   //bind(this)はよくわからん（とりあえずつける）
