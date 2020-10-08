@@ -11,10 +11,13 @@ class MemoEditScreen extends React.Component{
 
   componentDidMount(){
     const {params} = this.props.navigation.state;
+    console.log(params.memo);
+
     this.setState({
       body: params.memo.body, 
       key: params.memo.key
     })
+
   }
 
   handlePress() {
@@ -24,13 +27,20 @@ class MemoEditScreen extends React.Component{
     db.collection(`users/${currentUser.uid}/memos`).doc(this.state.key)
       .update({
         body: this.state.body,
+        createdOn: newDate,
       })
       .then(() => {
-        console.log(this.state);
-        console.log('success');
+        // console.log(this.state);
+        const {navigation}  = this.props;
+        navigation.state.params.memo.returnMemo({
+          body: this.state.body,
+          key: this.state.key,
+          createdOn: newDate,
+        })
+        navigation.goBack();
       })
       .catch((error) => {
-        console.log('error');
+        console.log(error);
       })
   }
 
