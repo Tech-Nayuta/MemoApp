@@ -20,7 +20,7 @@ class MemoListScreen extends React.Component{
       .then((snapShot) => {
         const memoList = [];
         snapShot.forEach((doc) => {
-          memoList.push(doc.data());
+          memoList.push({...doc.data(), key: doc.id});
         });
         this.setState({memoList});
         //this.setState({memoList: memoList});と同じ意味

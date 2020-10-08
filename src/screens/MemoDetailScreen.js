@@ -1,27 +1,46 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { StyleSheet, View, Text} from 'react-native' 
 
 import CircleButton from '../elements/CircleButton';
 
+const dateString = (date) => {
+  //Timestamp型からDate型に変換（.toDate）し、文字列に
+  if(date == null){return '';}
+
+  const str = date.toDate().toISOString();
+  return str.split('T')[0];
+}
+
 class MemoDetailScreen extends React.Component{
+  
+  componentDidMount(){
+    const {params} = this.props.navigation.state;
+    this.setState({memo: params.memo});
+  }
+  
+  state = {
+    memo: {},
+  }
+
   render(){
+    const {memo} = this.state;
     return(
       <View style={styles.container}>
         <View>
           <View style={styles.memoHeader}>
             <View style={styles.memoHeaderContents}>
-            <Text style={styles.memoHeaderTitle}>講座のアイデア</Text>
-            <Text style={styles.memoHeaderDate}>2020/09/09</Text>
+               <Text style={styles.memoHeaderTitle}>{memo.body}</Text>
+              <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
             </View>
           </View>
         </View>
 
         <View style={styles.memoContent}>
-          <Text>
-            構造のアイデアです。
+          <Text style={styles.memoBody}>
+            {memo.body}
           </Text>
         </View>
-        <CircleButton name="pencil" style={styles.editButton} color="white" onPress={() => {this.props.navigation.navigate('MemoEdit');}}/>
+        <CircleButton name="pencil" style={styles.editButton} color="white" onPress={() => {this.props.navigation.navigate('MemoEdit', {memo});}}/>
       </View>
     );
   }
@@ -49,6 +68,10 @@ const styles = StyleSheet.create({
   memoHeaderDate:{
     fontSize: 12,
     color: '#fff',
+  },
+  memoBody:{
+    lineHeight: 20,
+    fontSize: 15,
   },
   memoContent:{
     paddingTop: 30,
