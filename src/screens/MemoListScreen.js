@@ -4,6 +4,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
 import firebase from 'firebase'
+import { NavigationActions } from 'react-navigation';
 // this.props.navigation.navigate('MemoEdit');
 
 class MemoListScreen extends React.Component{
@@ -17,14 +18,12 @@ class MemoListScreen extends React.Component{
     const db = firebase.firestore();
     firebase.firestore().collection(`users/${currentUser.uid}/memos`)
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         const memoList = [];
         snapshot.forEach((doc) => {
           memoList.push({...doc.data(), key: doc.id});
         });
         this.setState({memoList});
         //this.setState({memoList: memoList});と同じ意味
-        // console.log(snapshot);
       })
       /*
       .get()
