@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, TouchableHighlight, TextInput, Button} from 'react-native' 
+import { StyleSheet, View, Text, TouchableHighlight, TextInput} from 'react-native' 
 import firebase from 'firebase'
 import {NavigationActions, StackActions} from 'react-navigation'
 

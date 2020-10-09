@@ -16,12 +16,20 @@ class LoginScreen extends React.Component{
   async componentDidMount(){
     const email = await SecureStore.getItemAsync('email')
     const password = await SecureStore.getItemAsync('password');
+    
+    if(email == null || password == null){
+      this.setState({isLoading: false});
+    }
+
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(()=>{
         this.setState({ isLoading: false});
         this.navigateToHome();
       })
-      .catch();
+      .catch(() => {
+        console.log("error");
+        this.setState({ isLoading: false});
+      });
   }
 
   navigateToHome(){
@@ -55,7 +63,7 @@ class LoginScreen extends React.Component{
   render(){
     return(
       <View style={styles.container}>
-        <Loading text="ログイン中" isLoading={this.state.isLoading}/>
+        <Loading text="ログイン中" isLoading={this.state.isLoading} style={styles.loading}/>
         <Text style={styles.title}>ログイン</Text>
         <TextInput style={styles.input} 
                    value={this.state.email} 

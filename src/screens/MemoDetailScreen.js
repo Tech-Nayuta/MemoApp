@@ -28,12 +28,14 @@ class MemoDetailScreen extends React.Component{
 
   render(){
     const {memo} = this.state;
+    if(Object.keys(memo).length == 0){return null}
+
     return(
       <View style={styles.container}>
         <View>
           <View style={styles.memoHeader}>
             <View style={styles.memoHeaderContents}>
-               <Text style={styles.memoHeaderTitle}>{memo.body}</Text>
+               <Text style={styles.memoHeaderTitle}>{memo.body.substring(0,10)}</Text>
               <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
             </View>
           </View>
