@@ -5,9 +5,7 @@ import { StyleSheet, View, Text, ActivityIndicator} from 'react-native'
 const Loading = (props) => {
     const {text, isLoading} = props;
 
-    if(!isLoading){
-      return null;
-    }
+    if(!isLoading){return null;}
 
     return(
       <View style={styles.container}>
@@ -28,7 +26,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 40,
+    // marginBottom: 40,
   },
   text: {
     margin: 20,
